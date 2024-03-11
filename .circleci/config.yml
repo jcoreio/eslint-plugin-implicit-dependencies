@@ -21,6 +21,10 @@ jobs:
           name: Install Dependencies
           command: pnpm install --frozen-lockfile
       - run:
+          name: Build
+          command: |
+            [[ $(netstat -tnlp | grep -F 'circleci-agent') ]] || pnpm run tc build
+      - run:
           name: Prepublish
           command: |
             [[ $(netstat -tnlp | grep -F 'circleci-agent') ]] || pnpm run tc prepublish
