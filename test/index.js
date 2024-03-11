@@ -19,7 +19,7 @@ it(`works`, async function () {
     ).stdout.trim()
   ).to.equal(
     dedent`
-    /Users/andy/gh/eslint-plugin-implicit-dependencies/fixture/index.js
+    ${process.cwd()}/fixture/index.js
       3:1  error  Module "foo" is not listed as a dependency in package.json    @jcoreio/implicit-dependencies/no-implicit
       4:1  error  Module "bar" is not listed as a dependency in package.json    @jcoreio/implicit-dependencies/no-implicit
       6:1  error  Module "qux" is not listed as a dependency in package.json    @jcoreio/implicit-dependencies/no-implicit
