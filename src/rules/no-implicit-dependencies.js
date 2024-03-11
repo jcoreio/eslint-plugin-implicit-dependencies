@@ -36,6 +36,7 @@ export default {
       if (
         !name ||
         typeof name !== 'string' ||
+        name === pkg.name ||
         name[0] === '.' ||
         name[0] === '/' ||
         name.startsWith('node:')

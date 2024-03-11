@@ -12,3 +12,5 @@ import 'process'
 import 'fs/promises'
 import 'node:process'
 import '@jcoreio/toolchain'
+
+import '@jcoreio/eslint-plugin-implicit-dependencies'
