@@ -1,5 +1,5 @@
 import path from 'path'
-import findup from 'findup'
+import pkgUp from 'pkg-up'
 import fs from 'fs'
 import { builtinModules } from 'module'
 const builtin = new Set(builtinModules)
@@ -27,7 +27,7 @@ export default {
   create: (context) => {
     // find the nearest package.json
     const dir = path.dirname(context.getFilename())
-    const jsonPath = path.join(findup.sync(dir, 'package.json'), 'package.json')
+    const jsonPath = pkgUp.sync({ cwd: dir })
     const pkg = JSON.parse(fs.readFileSync(jsonPath, 'utf8'))
     const checkModuleName = (name, node) => {
       let moduleName

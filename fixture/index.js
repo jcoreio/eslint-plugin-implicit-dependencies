@@ -2,7 +2,7 @@
 
 require('foo')
 import 'bar'
-import 'findup'
+import 'pkg-up'
 import('qux/gloob')
 export * from 'blonk'
 export { blark } from 'blark'
