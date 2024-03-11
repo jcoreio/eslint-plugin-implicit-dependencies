@@ -76,7 +76,9 @@ export default {
       'CallExpression:exit': (node) => {
         if (
           node.callee.type === 'Identifier' &&
-          node.callee.name === 'require'
+          node.callee.name === 'require' &&
+          node.arguments.length >= 1 &&
+          node.arguments[0].type === 'Literal'
         ) {
           const name = node.arguments[0].value
           checkModuleName(name, node)
@@ -91,11 +93,11 @@ export default {
         checkModuleName(name, node)
       },
       'ExportNamedDeclaration:exit': (node) => {
-        const name = node.source.value
+        const name = node.source?.value
         checkModuleName(name, node)
       },
       'ExportAllDeclaration:exit': (node) => {
-        const name = node.source.value
+        const name = node.source?.value
         checkModuleName(name, node)
       },
     }

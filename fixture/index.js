@@ -14,3 +14,10 @@ import 'node:process'
 import '@jcoreio/toolchain'
 
 import '@jcoreio/eslint-plugin-implicit-dependencies'
+
+const foo = 1
+export { foo }
+
+export default foo
+
+export class Bar {}
