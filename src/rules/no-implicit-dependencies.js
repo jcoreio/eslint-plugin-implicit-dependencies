@@ -41,7 +41,6 @@ export default {
       if (
         !name ||
         typeof name !== 'string' ||
-        name === pkg.name ||
         name[0] === '.' ||
         name[0] === '/' ||
         name[0] === '!' || // ignore webpack magic
@@ -55,6 +54,10 @@ export default {
         moduleName = name.split('/').slice(0, 2).join('/')
       } else {
         moduleName = name.split('/')[0]
+      }
+      // ignore package name self-reference
+      if (moduleName === pkg.name) {
+        return
       }
       // if not a valid npm package name then skip
       if (!validateNpmPackageName(moduleName).validForNewPackages) {
