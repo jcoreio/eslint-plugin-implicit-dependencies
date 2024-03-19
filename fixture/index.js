@@ -8,6 +8,10 @@ export * from 'blonk'
 export { blark } from 'blark'
 require('@a/b/c')
 
+require('!!raw-loader!./foo/bar')
+require('_a-b')
+require('AB')
+
 import 'process'
 import 'fs/promises'
 import 'node:process'
@@ -21,3 +25,6 @@ export { foo }
 export default foo
 
 export class Bar {}
+
+import 'blaz'
+import '@ack/glom/flark'

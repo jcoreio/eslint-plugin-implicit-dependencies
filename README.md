@@ -45,3 +45,13 @@ rules: {
   ]
 }
 ```
+
+You can ignore specific modules by adding an `ignore` option:
+
+```yaml
+rules:
+  - @jcoreio/implicit-dependencies/no-implicit:
+      - error
+      - ignore:
+          - vscode
+```

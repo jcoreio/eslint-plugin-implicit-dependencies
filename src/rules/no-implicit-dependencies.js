@@ -2,6 +2,7 @@ import path from 'path'
 import pkgUp from 'pkg-up'
 import fs from 'fs'
 import { builtinModules } from 'module'
+import validateNpmPackageName from 'validate-npm-package-name'
 const builtin = new Set(builtinModules)
 
 export default {
@@ -18,6 +19,10 @@ export default {
           },
           dev: {
             type: 'boolean',
+          },
+          ignore: {
+            type: 'array',
+            items: { type: 'string' },
           },
         },
         additionalProperties: false,
@@ -39,6 +44,7 @@ export default {
         name === pkg.name ||
         name[0] === '.' ||
         name[0] === '/' ||
+        name[0] === '!' || // ignore webpack magic
         name.startsWith('node:')
       ) {
         return
@@ -50,6 +56,10 @@ export default {
       } else {
         moduleName = name.split('/')[0]
       }
+      // if not a valid npm package name then skip
+      if (!validateNpmPackageName(moduleName).validForNewPackages) {
+        return
+      }
       // if module is a node core module then skip
       if (builtin.has(moduleName)) {
         return
@@ -57,7 +67,10 @@ export default {
 
       // check dependencies
       const opts = context.options[0] || {}
-      if (pkg.dependencies && pkg.dependencies[moduleName]) {
+
+      if (opts.ignore && opts.ignore.includes(moduleName)) {
+        return
+      } else if (pkg.dependencies && pkg.dependencies[moduleName]) {
         return
       } else if (pkg.optionalDependencies?.[moduleName] && opts.optional) {
         return

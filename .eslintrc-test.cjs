@@ -7,6 +7,7 @@ module.exports = {
       2,
       {
         dev: true,
+        ignore: ['blaz', '@ack/glom'],
       },
     ],
   },
