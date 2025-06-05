@@ -27,7 +27,16 @@ it(`works`, async function () {
       8:1  error  Module "blark" is not listed as a dependency in package.json  @jcoreio/implicit-dependencies/no-implicit
       9:1  error  Module "@a/b" is not listed as a dependency in package.json   @jcoreio/implicit-dependencies/no-implicit
 
-    ✖ 6 problems (6 errors, 0 warnings)
+    ${process.cwd()}/fixture/index.ts
+       3:1  error  Module "foo" is not listed as a dependency in package.json    @jcoreio/implicit-dependencies/no-implicit
+       4:1  error  Module "bar" is not listed as a dependency in package.json    @jcoreio/implicit-dependencies/no-implicit
+       7:1  error  Module "qux" is not listed as a dependency in package.json    @jcoreio/implicit-dependencies/no-implicit
+       9:1  error  Module "blonk" is not listed as a dependency in package.json  @jcoreio/implicit-dependencies/no-implicit
+      11:1  error  Module "blark" is not listed as a dependency in package.json  @jcoreio/implicit-dependencies/no-implicit
+      12:1  error  Module "@a/b" is not listed as a dependency in package.json   @jcoreio/implicit-dependencies/no-implicit
+      40:1  error  Module "glarb" is not listed as a dependency in package.json  @jcoreio/implicit-dependencies/no-implicit
+
+    ✖ 13 problems (13 errors, 0 warnings)
   `.trim()
   )
 })

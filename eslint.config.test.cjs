@@ -1,4 +1,5 @@
 require('@jcoreio/toolchain-esnext/util/babelRegister.cjs')
+const tseslint = require('typescript-eslint')
 
 module.exports = [
   {
@@ -12,9 +13,27 @@ module.exports = [
         {
           dev: true,
           ignore: ['blaz', '@ack/glom'],
-          ignoreTypeOnlyImports: true,
         },
       ],
     },
   },
+  ...tseslint.config([
+    {
+      ...tseslint.configs.base,
+      files: ['fixture/**/*.ts'],
+      plugins: {
+        '@jcoreio/implicit-dependencies': require('./src/index'),
+      },
+      rules: {
+        '@jcoreio/implicit-dependencies/no-implicit': [
+          2,
+          {
+            dev: true,
+            ignore: ['blaz', '@ack/glom'],
+            ignoreTypeOnlyImports: true,
+          },
+        ],
+      },
+    },
+  ]),
 ]

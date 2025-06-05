@@ -24,6 +24,9 @@ export default {
             type: 'array',
             items: { type: 'string' },
           },
+          ignoreTypeOnlyImports: {
+            type: 'boolean',
+          },
         },
         additionalProperties: false,
       },
@@ -106,6 +109,15 @@ export default {
       },
       'ImportDeclaration:exit': (node) => {
         const name = node.source.value
+        if (
+          context.options[0]?.ignoreTypeOnlyImports &&
+          (node.importKind === 'type' ||
+            node.importKind === 'typeof' ||
+            (node.specifiers?.length &&
+              node.specifiers.every((s) => s.importKind === 'type')))
+        ) {
+          return
+        }
         checkModuleName(name, node)
       },
       'ExportNamedDeclaration:exit': (node) => {
