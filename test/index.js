@@ -13,7 +13,7 @@ it(`works`, async function () {
     (
       await execa(
         'eslint',
-        ['--config', '.eslintrc-test.cjs', '--no-ignore', 'fixture'],
+        ['--config', 'eslint.config.test.cjs', '--no-ignore', 'fixture'],
         { stdio: 'pipe', encoding: 'utf8', maxBuffer: 10 * 1024 * 1024 }
       ).catch((e) => e)
     ).stdout.trim()
