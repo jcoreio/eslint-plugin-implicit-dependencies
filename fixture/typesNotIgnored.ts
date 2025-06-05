@@ -33,11 +33,11 @@ import 'blaz'
 import '@ack/glom/flark'
 
 // @ts-expect-error missing dep
-import type {blag} from 'blag'
+import type { blag } from 'blag'
 // @ts-expect-error missing dep
-import {type floom, type flam} from 'floom'
+import { type floom, type flam } from 'floom'
 // @ts-expect-error missing dep
-import {type glarb, blorgh} from 'glarb'
+import { type glarb, blorgh } from 'glarb'
 
 // @ts-expect-error missing dep
 type X = import('bloop')
