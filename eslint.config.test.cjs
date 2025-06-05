@@ -35,5 +35,22 @@ module.exports = [
         ],
       },
     },
+    {
+      ...tseslint.configs.base,
+      files: ['fixture/**/typesNotIgnored.ts'],
+      plugins: {
+        '@jcoreio/implicit-dependencies': require('./src/index'),
+      },
+      rules: {
+        '@jcoreio/implicit-dependencies/no-implicit': [
+          2,
+          {
+            dev: true,
+            ignore: ['blaz', '@ack/glom'],
+            ignoreTypeOnlyImports: false,
+          },
+        ],
+      },
+    },
   ]),
 ]

@@ -128,6 +128,12 @@ export default {
         const name = node.source?.value
         checkModuleName(name, node)
       },
+      'TSImportType:exit': (node) => {
+        const name = (node.parameter || node.argument)?.literal.value
+        if (!context.options[0]?.ignoreTypeOnlyImports) {
+          checkModuleName(name, node)
+        }
+      },
     }
   },
 }
